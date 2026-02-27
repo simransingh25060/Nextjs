@@ -18,19 +18,15 @@ import {
   AlertDialogFooter,
   AlertDialogCancel,
   AlertDialogAction,
-} from "@/components/ui/alert-dialog"
+} from "../components/ui/alert-dialog"
 
-import { Button } from "@/components/ui/button"
+import { Button } from "./ui/button"
 import { X } from "lucide-react"
 import { toast } from "sonner"
 import axios, { AxiosError } from "axios"
 import { ApiResponse } from "@/types/ApiResponse"
 
-// Example Message type (adjust if already defined elsewhere)
-type Message = {
-  _id: string
-  content: string
-}
+import { Message } from "@/model/User"
 
 type MessageCardProps = {
   message: Message
@@ -51,7 +47,7 @@ const MessageCard = ({
       toast.success(response.data.message)
 
       // remove from UI
-      onMessageDelete(message._id)
+      onMessageDelete(message._id.toString())
 
     } catch (error) {
       const axiosError = error as AxiosError<ApiResponse>
